@@ -14,7 +14,7 @@ def del_list():
 
 
 def save_list():
-    f = open('list000.txt', 'w')
+    f = open('user_information.txt', 'w')
     f.writelines("\n".join(box.get(0, END)))
     f.close()
 

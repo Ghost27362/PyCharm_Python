@@ -374,7 +374,7 @@ class Admin_Menu(Frame):
         super().__init__(master)
         self.master6 = master
         self.master6.title('Режим админа')
-        self.master6.geometry('900x600+400+250')
+        self.master6.geometry('1200x600+200+50')
         self.master6.resizable(width=False, height=False)
         self.create_admin_widgets()
 
@@ -391,33 +391,63 @@ class Admin_Menu(Frame):
         self.lbl_user = Label(self.master6, text='Пользователи', padx=8, pady=8)
         self.lbl_user.place(relx=0.00, rely=0.59)
 
+        self.it_add = Label(self.master6, text='Еда и напитки', padx=8, pady=8)
+        self.it_add.place(relx=0.0, rely=0.70)
+
+        self.price_eda_lbl = Label(self.master6, text='Цена на еду, напитки', padx=8, pady=8)
+        self.price_eda_lbl.place(relx=0.00, rely=0.80)
+
         self.variable_benzin_btn = Label(self.master6, text='Вариация бензина', padx=8, pady=8)
-        self.variable_benzin_btn.place(relx=0.40, rely=0.3)
+        self.variable_benzin_btn.place(relx=0.20, rely=0.4)
 
         self.price_benzin_btn = Label(self.master6, text='Цена бензина', padx=8, pady=8)
-        self.price_benzin_btn.place(relx=0.56, rely=0.3)
+        self.price_benzin_btn.place(relx=0.30, rely=0.4)
 
         self.user_btn = Label(self.master6, text='Пользователи', padx=8, pady=8)
-        self.user_btn.place(relx=0.71, rely=0.3)
+        self.user_btn.place(relx=0.40, rely=0.4)
 
         self.eda_and_napitki = Label(self.master6, text='Еда и напитки', padx=8, pady=8)
-        self.eda_and_napitki.place(relx=0.86, rely=0.3)
+        self.eda_and_napitki.place(relx=0.50, rely=0.4)
 
-        self.btn_exit_menu = Button(self.master6, text='<', font='Arial 11 bold', padx=10, pady=8,
-                                    command=self.return_window_menu)
+        self.price_it_lbl = Label(self.master6, text='Цена на еду и напитки', padx=8, pady=8)
+        self.price_it_lbl.place(relx=0.59, rely=0.4)
+
+        self.menu_info_lbl = Label(self.master6, text='Стандарт.Меню', padx=8, pady=8)
+        self.menu_info_lbl.place(relx=0.71, rely=0.4)
+
+
+        self.btn_exit_menu = Button(self.master6, text='<', font='Arial 11 bold', padx=10, pady=8, command=self.return_window_menu)
         self.btn_exit_menu.place(relx=0.00, rely=0.0)
 
         self.lst_window1 = Listbox(self.master6, selectmode=EXTENDED)
-        self.lst_window1.place(relx=0.40, rely=0.35)
+        self.lst_window1.place(relx=0.20, rely=0.45)
 
         self.lst_window2 = Listbox(self.master6, selectmode=EXTENDED)
-        self.lst_window2.place(relx=0.55, rely=0.35)
+        self.lst_window2.place(relx=0.30, rely=0.45)
 
         self.lst_window3 = Listbox(self.master6, selectmode=EXTENDED)
-        self.lst_window3.place(relx=0.70, rely=0.35)
+        self.lst_window3.place(relx=0.40, rely=0.45)
 
         self.lst_window4 = Listbox(self.master6, selectmode=EXTENDED)
-        self.lst_window4.place(relx=0.85, rely=0.35)
+        self.lst_window4.place(relx=0.50, rely=0.45)
+
+        self.lst_window5 = Listbox(self.master6, selectmode=EXTENDED)
+        self.lst_window5.place(relx=0.60, rely=0.45)
+
+        self.lst_window6 = Listbox(self.master6, selectmode=EXTENDED)
+        self.lst_window6.place(relx=0.70, rely=0.45)
+        self.lst_window6.insert(1, '15 литров бенз 10$')
+        self.lst_window6.insert(2, '20 литров бенз 20$')
+        self.lst_window6.insert(3, '30 литров бенз 35$')
+        self.lst_window6.insert(4, '40 литров бенз 50$')
+        self.lst_window6.insert(5, '60 литров бенз 80$')
+        self.lst_window6.insert(6, '80 литров бенз 100$')
+        self.lst_window6.insert(7, 'Кока кола 2$')
+        self.lst_window6.insert(8, ' Фанта 2$')
+        self.lst_window6.insert(9, ' Пепси 2$')
+        self.lst_window6.insert(10, ' Спрайт 3$')
+        self.lst_window6.insert(11, ' Хот Дог 5$')
+        self.lst_window6.insert(12, ' Бургер 7$')
 
         self.benzin_entry = Entry(self.master6)
         self.benzin_entry.place(relx=0.00, rely=0.37)
@@ -429,43 +459,46 @@ class Admin_Menu(Frame):
         self.user_entry.place(relx=0.00, rely=0.63)
 
         self.eda_and_napitki_ent = Entry(self.master6)
-        self.eda_and_napitki_ent.place(relx=0.00, rely=0.73)
+        self.eda_and_napitki_ent.place(relx=0.00, rely=0.75)
 
-        self.element_add = Button(self.master6, text='Добавить', font='Arial 6 bold', padx=6, pady=6,
-                                  command=self.add_elements)
-        self.element_add.place(relx=0.17, rely=0.36)
+        self.price_it_ent = Entry(self.master6)
+        self.price_it_ent.place(relx=0.00, rely=0.85)
 
-        self.price_add = Button(self.master6, text='Добавить', font='Arial 6 bold', padx=6, pady=6,
-                                command=self.add_price)
-        self.price_add.place(relx=0.17, rely=0.49)
+        self.element_add = Button(self.master6, text='Добавить', font='Arial 6 bold', padx=6, pady=6, command=self.add_elements)
+        self.element_add.place(relx=0.10, rely=0.36)
 
-        self.user_add = Button(self.master6, text='Добавить', font='Arial 6 bold', padx=6, pady=6,
-                               command=self.add_user)
-        self.user_add.place(relx=0.17, rely=0.62)
+        self.it_btn = Button(self.master6, text='Добавить', font='Arial 6 bold', padx=6, pady=6, command=self.add_it_and_beverages)
+        self.it_btn.place(relx=0.10, rely=0.74)
 
-        self.save_btn = Button(self.master6, text='Сохранить изменения', font='Arial 8 bold', padx=7, pady=7,
-                               command=self.save_lists)
-        self.save_btn.place(relx=0.53, rely=0.70)
+        self.price_add = Button(self.master6, text='Добавить', font='Arial 6 bold', padx=6, pady=6, command=self.add_price)
+        self.price_add.place(relx=0.10, rely=0.49)
 
-        self.get_user = Button(self.master6, text='Перейти в режим пользователя', padx=10, pady=8,
-                               command=self.switch_to_user_mode)
+        self.user_add = Button(self.master6, text='Добавить', font='Arial 6 bold', padx=6, pady=6, command=self.add_user)
+        self.user_add.place(relx=0.10, rely=0.62)
+
+        self.price_it_btn = Button(self.master6, text='Добавить', font='Arial 6 bold', padx=6, pady=6, command=self.add_it_price)
+        self.price_it_btn.place(relx=0.10, rely=0.84)
+
+        self.save_btn = Button(self.master6, text='Сохранить изменения', font='Arial 8 bold', padx=7, pady=7, command=self.save_lists)
+        self.save_btn.place(relx=0.37, rely=0.80)
+
+        self.get_user = Button(self.master6, text='Перейти в режим пользователя', padx=10, pady=8, command=self.switch_to_user_mode)
         self.get_user.place(relx=0.75, rely=0.00)
 
-        self.window_delete = Button(self.master6, text='           Удалить         ', font='Arial 9 bold',
-                                    command=self.del_list1)
-        self.window_delete.place(relx=0.40, rely=0.62)
+        self.window_delete = Button(self.master6, text='           Удалить         ', font='Arial 9 bold', command=self.del_list1)
+        self.window_delete.place(relx=0.20, rely=0.72)
 
-        self.window_delete2 = Button(self.master6, text='           Удалить         ', font='Arial 9 bold',
-                                     command=self.del_list2)
-        self.window_delete2.place(relx=0.55, rely=0.62)
+        self.window_delete2 = Button(self.master6, text='           Удалить         ', font='Arial 9 bold', command=self.del_list2)
+        self.window_delete2.place(relx=0.30, rely=0.72)
 
-        self.window_delete3 = Button(self.master6, text='           Удалить          ', font='Arial 9 bold',
-                                     command=self.del_list3)
-        self.window_delete3.place(relx=0.70, rely=0.62)
+        self.window_delete3 = Button(self.master6, text='           Удалить          ', font='Arial 9 bold', command=self.del_list3)
+        self.window_delete3.place(relx=0.40, rely=0.72)
 
-        self.window_delete4 = Button(self.master6, text='           Удалить          ', font='Arial 9 bold',
-                                     command=self.del_list4)
-        self.window_delete4.place(relx=0.85, rely=0.62)
+        self.window_delete4 = Button(self.master6, text='           Удалить          ', font='Arial 9 bold', command=self.del_list4)
+        self.window_delete4.place(relx=0.50, rely=0.72)
+
+        self.window_delete5 = Button(self.master6, text='           Удалить          ', font='Arial 9 bold', command=self.del_list5)
+        self.window_delete5.place(relx=0.60, rely=0.72)
 
     def switch_to_user_mode(self):
         user = self.get_user
@@ -491,8 +524,12 @@ class Admin_Menu(Frame):
         self.user_entry.delete(0, END)
 
     def add_it_and_beverages(self):
-        self.lst_window4.insert(END, self)
-        pass
+        self.lst_window4.insert(END, self.eda_and_napitki_ent.get())
+        self.eda_and_napitki_ent.delete(0, END)
+
+    def add_it_price(self):
+        self.lst_window5.insert(END, self.price_it_ent.get())
+        self.price_it_ent.delete(0, END)
 
     def del_list1(self):
         self.select = list(self.lst_window1.curselection())
@@ -518,6 +555,12 @@ class Admin_Menu(Frame):
         for i in self.select:
             self.lst_window4.delete(i)
 
+    def del_list5(self):
+        self.select = list(self.lst_window5.curselection())
+        self.select.reverse()
+        for i in self.select:
+            self.lst_window5.delete(i)
+
     def save_lists(self):
         self.file = open('gasoline_variation.txt', 'w')
         self.file.writelines('\n'.join(self.lst_window1.get(0, END)))
@@ -531,6 +574,14 @@ class Admin_Menu(Frame):
         self.file.writelines('\n'.join(self.lst_window3.get(0, END)))
         self.file.close()
 
+        self.file = open('it_information.txt', 'w')
+        self.file.writelines('\n'.join(self.lst_window4.get(0, END)))
+        self.file.close()
+
+        self.file = open('price_it_information.txt', 'w')
+        self.file.writelines('\n'.join(self.lst_window5.get(0, END)))
+        self.file.close()
+        showinfo('Azpetrol', 'Данные успешно сохранились в ваши файлы')
 
 if __name__ == '__main__':
     root = Tk()

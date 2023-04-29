@@ -8,7 +8,7 @@ class LoginWindow(Frame):
         super().__init__(master)
         self.master1 = master
         self.master1.title('Login')
-        self.master1.geometry('400x230+700+350')
+        self.master1.geometry('400x230+550+250')
         self.master1.resizable(width=False, height=False)
         self.master1.config(cursor='pencil')
         self.master1['bg'] = 'black'
@@ -73,7 +73,7 @@ class Sign_Menu(Frame):
         super().__init__(master)
         self.master3 = master
         self.master3.title = ('Sign up')
-        self.master3.geometry('400x230+700+350')
+        self.master3.geometry('400x230+550+250')
         self.master3.resizable(width=False, height=False)
         self.master3['bg'] = 'black'
         self.create_window_widgets()
@@ -137,7 +137,7 @@ class Input_Selection(Frame):
         super().__init__(master)
         self.master2 = master
         self.master2.title('Выбор входа')
-        self.master2.geometry('300x300+750+350')
+        self.master2.geometry('300x300+600+250')
         self.master2.resizable(width=False, height=False)
         self.master2['bg'] = 'black'
         self.create()
@@ -182,7 +182,7 @@ class Menu_User(Frame):
         super().__init__(master)
         self.master4 = master
         self.master4.title('Режим пользователя')
-        self.master4.geometry('600x300+650+300')
+        self.master4.geometry('600x300+450+200')
         self.master4.resizable(width=False, height=False)
         self.create_user()
 
@@ -298,7 +298,7 @@ class Settings_Menu(Frame):
         super().__init__(master)
         self.master5 = master
         self.master5.title('Настройки пользователя')
-        self.master5.geometry('550x300+500+250')
+        self.master5.geometry('550x300+450+200')
         self.master5['bg'] = 'black'
         self.master5.resizable(width=False, height=False)
         self.create_settings_wid()
@@ -415,7 +415,6 @@ class Admin_Menu(Frame):
         self.menu_info_lbl = Label(self.master6, text='Стандарт.Меню', padx=8, pady=8)
         self.menu_info_lbl.place(relx=0.71, rely=0.4)
 
-
         self.btn_exit_menu = Button(self.master6, text='<', font='Arial 11 bold', padx=10, pady=8, command=self.return_window_menu)
         self.btn_exit_menu.place(relx=0.00, rely=0.0)
 
@@ -483,7 +482,7 @@ class Admin_Menu(Frame):
         self.save_btn.place(relx=0.37, rely=0.80)
 
         self.get_user = Button(self.master6, text='Перейти в режим пользователя', padx=10, pady=8, command=self.switch_to_user_mode)
-        self.get_user.place(relx=0.75, rely=0.00)
+        self.get_user.place(relx=0.83, rely=0.00)
 
         self.window_delete = Button(self.master6, text='           Удалить         ', font='Arial 9 bold', command=self.del_list1)
         self.window_delete.place(relx=0.20, rely=0.72)

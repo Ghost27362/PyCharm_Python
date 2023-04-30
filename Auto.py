@@ -569,7 +569,7 @@ class Admin_Menu(Frame):
         self.file.writelines('\n'.join(self.lst_window2.get(0, END)))
         self.file.close()
 
-        self.file = open('user_information.txt', 'w')
+        self.file = open('users_information.txt', 'w')
         self.file.writelines('\n'.join(self.lst_window3.get(0, END)))
         self.file.close()
 

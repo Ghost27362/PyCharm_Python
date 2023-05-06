@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter.messagebox import *
-from PIL import *
 
 
 class LoginWindow(Frame):
@@ -10,7 +9,6 @@ class LoginWindow(Frame):
         self.master1.title('Login')
         self.master1.geometry('400x230+550+250')
         self.master1.resizable(width=False, height=False)
-        self.master1.config(cursor='pencil')
         self.master1['bg'] = 'black'
         self.create_widgets()
 
@@ -19,8 +17,7 @@ class LoginWindow(Frame):
 
         main_label = Label(self.master1, text='Вход', font='Arial 15 bold', bg='black', fg='white')
         main_label.pack()
-        username_label = Label(self.master1, text='Имя пользователя', font='Arial 11 bold', bg='black', fg='white',
-                               padx=10, pady=8)
+        username_label = Label(self.master1, text='Имя пользователя', font='Arial 11 bold', bg='black', fg='white', padx=10, pady=8)
         username_label.pack()
 
         self.username_entry = Entry(self.master1, bg='black', fg='Lime', font='Arial 12')
@@ -43,6 +40,24 @@ class LoginWindow(Frame):
         self.send_btn.pack(padx=10, pady=8)
 
     def login(self):
+        text = self.username_entry.get()
+        result1 = 'Имя пользователя: ' + text
+        self.username_entry['text'] = result1
+        print(result1)
+
+        text = self.password_entry.get()
+        result2 = 'Пароль: ' + text
+        self.password_entry['text'] = result2
+        print(result2)
+
+        self.file = open('login_information.txt', 'w')
+        self.file.writelines(self.username_entry.get())
+        self.file.close()
+
+        self.file = open('password_information.txt', 'w')
+        self.file.writelines(self.password_entry.get())
+        self.file.close()
+
         log = self.username_entry.get()
         psw = self.password_entry.get()
         if log == 'Admin' and psw == 'admin':
@@ -54,6 +69,7 @@ class LoginWindow(Frame):
             log = self.username_entry.get()
             psw = self.password_entry.get()
             showerror('ERROR', 'Введено не верное имя или пароль')
+
 
     def sign(self):
         cno = self.send_btn
@@ -104,6 +120,14 @@ class Sign_Menu(Frame):
         self.pas_btn.pack(padx=10, pady=8)
 
     def login_win(self):
+        self.file = open('login_user.txt', 'w')
+        self.file.writelines(self.usernam_entry.get())
+        self.file.close()
+
+        self.file = open('password_user.txt', 'w')
+        self.file.writelines(self.pasword_entry.get())
+        self.file.close()
+
         log = self.usernam_entry.get()
         psw = self.pasword_entry.get()
         if log == '' and psw == '':
@@ -463,6 +487,7 @@ class Admin_Menu(Frame):
         self.price_it_ent = Entry(self.master6)
         self.price_it_ent.place(relx=0.00, rely=0.85)
 
+
         self.element_add = Button(self.master6, text='Добавить', font='Arial 6 bold', padx=6, pady=6, command=self.add_elements)
         self.element_add.place(relx=0.10, rely=0.36)
 
@@ -479,7 +504,7 @@ class Admin_Menu(Frame):
         self.price_it_btn.place(relx=0.10, rely=0.84)
 
         self.save_btn = Button(self.master6, text='Сохранить изменения', font='Arial 8 bold', padx=7, pady=7, command=self.save_lists)
-        self.save_btn.place(relx=0.37, rely=0.80)
+        self.save_btn.place(relx=0.37, rely=0.85)
 
         self.get_user = Button(self.master6, text='Перейти в режим пользователя', padx=10, pady=8, command=self.switch_to_user_mode)
         self.get_user.place(relx=0.83, rely=0.00)
@@ -498,6 +523,18 @@ class Admin_Menu(Frame):
 
         self.window_delete5 = Button(self.master6, text='           Удалить          ', font='Arial 9 bold', command=self.del_list5)
         self.window_delete5.place(relx=0.60, rely=0.72)
+
+        self.element_add_menu = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=7, pady=6)
+        self.element_add_menu.place(relx=0.20, rely=0.76)
+
+        self.element_price_menu = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=7, pady=6)
+        self.element_price_menu.place(relx=0.30, rely=0.76)
+
+        self.element_it_menu_add = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=7, pady=6)
+        self.element_it_menu_add.place(relx=0.50, rely=0.76)
+
+        self.element_price_it_add = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=8, pady=6)
+        self.element_price_it_add.place(relx=0.60, rely=0.76)
 
     def switch_to_user_mode(self):
         user = self.get_user
@@ -527,8 +564,17 @@ class Admin_Menu(Frame):
         self.eda_and_napitki_ent.delete(0, END)
 
     def add_it_price(self):
-        self.lst_window5.insert(END, self.price_it_ent.get())
-        self.price_it_ent.delete(0, END)
+        number_1 = self.price_it_ent.get()
+        number_2 = self.price_it_ent.get()
+        number_3 = self.price_it_ent.get()
+        number_4 = self.price_it_ent.get()
+        number_5 = self.price_it_ent.get()
+        number_6 = self.price_it_ent.get()
+        if number_1 == '1$' or number_2 == '2$' or number_3 == '3$' or number_4 == '4$' or number_5 == '5$' or number_6 == '6$':
+            self.lst_window5.insert(END, self.price_it_ent.get())
+            self.price_it_ent.delete(0, END)
+        else:
+            showerror('Azpetrol', 'В это поле можно вводить только числа. Если вы ввели число больше 6 то цена не добавится')
 
     def del_list1(self):
         self.select = list(self.lst_window1.curselection())
@@ -581,6 +627,14 @@ class Admin_Menu(Frame):
         self.file.writelines('\n'.join(self.lst_window5.get(0, END)))
         self.file.close()
         showinfo('Azpetrol', 'Данные успешно сохранились в ваши файлы')
+
+        print('\nСозданное меню')
+        self.my_menu = (f'\nВ меню добавлен - {self.lst_window1.get(0)}'
+              f'\nВ меню добавлен - {self.lst_window2.get(0)}'
+              f'\nВ меню добавлен - {self.lst_window3.get(0)}'
+              f'\nВ меню добавлен - {self.lst_window4.get(0)}'
+              f'\nВ меню добавлен - {self.lst_window5.get(0)}')
+        print(self.my_menu)
 
 if __name__ == '__main__':
     root = Tk()

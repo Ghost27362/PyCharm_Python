@@ -428,13 +428,19 @@ class Admin_Menu(Frame):
         self.price_benzin_btn.place(relx=0.30, rely=0.4)
 
         self.user_btn = Label(self.master6, text='Пользователи', padx=8, pady=8)
-        self.user_btn.place(relx=0.40, rely=0.4)
+        self.user_btn.place(relx=0.80, rely=0.4)
+
+        self.menu_lbl = Label(self.master6, text='Пустое меню', padx=8, pady=8)
+        self.menu_lbl.place(relx=0.60, rely=0.4)
+
+        self.user_password_lbl = Label(self.master6, text='Пароль пол.теля', padx=8, pady=8)
+        self.user_password_lbl.place(relx=0.90, rely=0.4)
 
         self.eda_and_napitki = Label(self.master6, text='Еда и напитки', padx=8, pady=8)
         self.eda_and_napitki.place(relx=0.50, rely=0.4)
 
         self.price_it_lbl = Label(self.master6, text='Цена на еду и напитки', padx=8, pady=8)
-        self.price_it_lbl.place(relx=0.59, rely=0.4)
+        self.price_it_lbl.place(relx=0.39, rely=0.4)
 
         self.menu_info_lbl = Label(self.master6, text='Стандарт.Меню', padx=8, pady=8)
         self.menu_info_lbl.place(relx=0.71, rely=0.4)
@@ -449,13 +455,13 @@ class Admin_Menu(Frame):
         self.lst_window2.place(relx=0.30, rely=0.45)
 
         self.lst_window3 = Listbox(self.master6, selectmode=EXTENDED)
-        self.lst_window3.place(relx=0.40, rely=0.45)
+        self.lst_window3.place(relx=0.80, rely=0.45)
 
         self.lst_window4 = Listbox(self.master6, selectmode=EXTENDED)
         self.lst_window4.place(relx=0.50, rely=0.45)
 
         self.lst_window5 = Listbox(self.master6, selectmode=EXTENDED)
-        self.lst_window5.place(relx=0.60, rely=0.45)
+        self.lst_window5.place(relx=0.40, rely=0.45)
 
         self.lst_window6 = Listbox(self.master6, selectmode=EXTENDED)
         self.lst_window6.place(relx=0.70, rely=0.45)
@@ -471,6 +477,12 @@ class Admin_Menu(Frame):
         self.lst_window6.insert(10, ' Спрайт 3$')
         self.lst_window6.insert(11, ' Хот Дог 5$')
         self.lst_window6.insert(12, ' Бургер 7$')
+
+        self.lst_password_user = Listbox(self.master6, selectmode=EXTENDED)
+        self.lst_password_user.place(relx=0.90, rely=0.45)
+
+        self.lst_menu = Listbox(self.master6, selectmode=EXTENDED)
+        self.lst_menu.place(relx=0.60, rely=0.45)
 
         self.benzin_entry = Entry(self.master6)
         self.benzin_entry.place(relx=0.00, rely=0.37)
@@ -516,25 +528,31 @@ class Admin_Menu(Frame):
         self.window_delete2.place(relx=0.30, rely=0.72)
 
         self.window_delete3 = Button(self.master6, text='           Удалить          ', font='Arial 9 bold', command=self.del_list3)
-        self.window_delete3.place(relx=0.40, rely=0.72)
+        self.window_delete3.place(relx=0.80, rely=0.72)
 
         self.window_delete4 = Button(self.master6, text='           Удалить          ', font='Arial 9 bold', command=self.del_list4)
         self.window_delete4.place(relx=0.50, rely=0.72)
 
         self.window_delete5 = Button(self.master6, text='           Удалить          ', font='Arial 9 bold', command=self.del_list5)
-        self.window_delete5.place(relx=0.60, rely=0.72)
+        self.window_delete5.place(relx=0.40, rely=0.72)
 
-        self.element_add_menu = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=7, pady=6)
+        self.window_delete6 = Button(self.master6, text='           Удалить          ', font='Arial 9 bold', command=self.del_element_menu)
+        self.window_delete6.place(relx=0.60, rely=0.72)
+
+        self.window_delete7 = Button(self.master6, text='           Удалить          ', font='Arial 9 bold', command=self.del_list6)
+        self.window_delete7.place(relx=0.90, rely=0.72)
+
+        self.element_add_menu = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=7, pady=6, command=self.add_elements_menu)
         self.element_add_menu.place(relx=0.20, rely=0.76)
 
-        self.element_price_menu = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=7, pady=6)
+        self.element_price_menu = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=7, pady=6, command=self.add_price_menu)
         self.element_price_menu.place(relx=0.30, rely=0.76)
 
         self.element_it_menu_add = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=7, pady=6)
         self.element_it_menu_add.place(relx=0.50, rely=0.76)
 
         self.element_price_it_add = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=8, pady=6)
-        self.element_price_it_add.place(relx=0.60, rely=0.76)
+        self.element_price_it_add.place(relx=0.40, rely=0.76)
 
     def switch_to_user_mode(self):
         user = self.get_user
@@ -576,6 +594,16 @@ class Admin_Menu(Frame):
         else:
             showerror('Azpetrol', 'В это поле можно вводить только числа. Если вы ввели число больше 6 то цена не добавится')
 
+    def add_elements_menu(self):
+        self.select = list(self.lst_window1.curselection())
+        for i in self.select:
+            self.lst_menu.insert(END, self.lst_window1.get(i))
+
+    def add_price_menu(self):
+        self.select = list(self.lst_window2.curselection())
+        for i in self.select:
+            self.lst_menu.insert(END, self.lst_window2.get(i))
+
     def del_list1(self):
         self.select = list(self.lst_window1.curselection())
         self.select.reverse()
@@ -605,6 +633,20 @@ class Admin_Menu(Frame):
         self.select.reverse()
         for i in self.select:
             self.lst_window5.delete(i)
+
+    def del_list6(self):
+        self.select = list(self.lst_password_user.curselection())
+        self.select.reverse()
+        for i in self.select:
+            self.lst_password_user.delete(i)
+
+
+    def del_element_menu(self):
+        self.select = list(self.lst_menu.curselection())
+        self.select.reverse()
+        for i in self.select:
+            self.lst_menu.delete(i)
+
 
     def save_lists(self):
         self.file = open('gasoline_variation.txt', 'w')

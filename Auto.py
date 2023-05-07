@@ -60,7 +60,7 @@ class LoginWindow(Frame):
 
         log = self.username_entry.get()
         psw = self.password_entry.get()
-        if log == 'Admin' and psw == 'admin':
+        if log == 'Admin' and psw == 'admin' or log == 'admin':
             showinfo('Azpetrol', 'Вход успешно выполнен!  Чтобы продолжить нажмите ОК')
             self.master1.withdraw()
             self.new_window = Toplevel(self.master1)
@@ -418,6 +418,9 @@ class Admin_Menu(Frame):
         self.it_add = Label(self.master6, text='Еда и напитки', padx=8, pady=8)
         self.it_add.place(relx=0.0, rely=0.70)
 
+        self.password_user_lbl = Label(self.master6, text='Пароль пользователя', padx=8, pady=8)
+        self.password_user_lbl.place(relx=0.00, rely=0.90)
+
         self.price_eda_lbl = Label(self.master6, text='Цена на еду, напитки', padx=8, pady=8)
         self.price_eda_lbl.place(relx=0.00, rely=0.80)
 
@@ -499,6 +502,8 @@ class Admin_Menu(Frame):
         self.price_it_ent = Entry(self.master6)
         self.price_it_ent.place(relx=0.00, rely=0.85)
 
+        self.password_user_ent = Entry(self.master6)
+        self.password_user_ent.place(relx=0.00, rely=0.95)
 
         self.element_add = Button(self.master6, text='Добавить', font='Arial 6 bold', padx=6, pady=6, command=self.add_elements)
         self.element_add.place(relx=0.10, rely=0.36)
@@ -515,8 +520,14 @@ class Admin_Menu(Frame):
         self.price_it_btn = Button(self.master6, text='Добавить', font='Arial 6 bold', padx=6, pady=6, command=self.add_it_price)
         self.price_it_btn.place(relx=0.10, rely=0.84)
 
+        self.password_user_btn = Button(self.master6, text='Добавить', font='Arial 6 bold', padx=6, pady=6, command=self.add_password_user)
+        self.password_user_btn.place(relx=0.10, rely=0.95)
+
         self.save_btn = Button(self.master6, text='Сохранить изменения', font='Arial 8 bold', padx=7, pady=7, command=self.save_lists)
         self.save_btn.place(relx=0.37, rely=0.85)
+
+        self.create_menu_btn = Button(self.master6, text='Создать меню', font='Arial 8 bold', padx=7, pady=7, command=self.save_menu)
+        self.create_menu_btn.place(relx=0.55, rely=0.85)
 
         self.get_user = Button(self.master6, text='Перейти в режим пользователя', padx=10, pady=8, command=self.switch_to_user_mode)
         self.get_user.place(relx=0.83, rely=0.00)
@@ -548,10 +559,10 @@ class Admin_Menu(Frame):
         self.element_price_menu = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=7, pady=6, command=self.add_price_menu)
         self.element_price_menu.place(relx=0.30, rely=0.76)
 
-        self.element_it_menu_add = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=7, pady=6)
+        self.element_it_menu_add = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=7, pady=6, command=self.add_it_menu)
         self.element_it_menu_add.place(relx=0.50, rely=0.76)
 
-        self.element_price_it_add = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=8, pady=6)
+        self.element_price_it_add = Button(self.master6, text='Добавить в меню', font='Arial 8 bold', padx=8, pady=6, command=self.add_it_price_menu)
         self.element_price_it_add.place(relx=0.40, rely=0.76)
 
     def switch_to_user_mode(self):
@@ -570,8 +581,33 @@ class Admin_Menu(Frame):
         self.benzin_entry.delete(0, END)
 
     def add_price(self):
-        self.lst_window2.insert(END, self.price_entry.get())
-        self.price_entry.delete(0, END)
+        number1 = self.price_entry.get()
+        number2 = self.price_entry.get()
+        number3 = self.price_entry.get()
+        number4 = self.price_entry.get()
+        number5 = self.price_entry.get()
+        number6 = self.price_entry.get()
+        number7 = self.price_entry.get()
+        number8 = self.price_entry.get()
+        number9 = self.price_entry.get()
+        number10 = self.price_entry.get()
+        number11 = self.price_entry.get()
+        number12 = self.price_entry.get()
+        number13 = self.price_entry.get()
+        number14 = self.price_entry.get()
+        number15 = self.price_entry.get()
+        number16 = self.price_entry.get()
+        number17 = self.price_entry.get()
+        number18 = self.price_entry.get()
+        number19 = self.price_entry.get()
+        number20 = self.price_entry.get()
+        if number1 == '1$' or number2 == '2$' or number3 == '3$' or number4 == '4$' or number5 == '5$' or number6 == '6$' or number7 == '7$' or number8 == '8$' or number9 == '9$' or number10 == '10$' or number11 == '11$' or number12 == '12$'or number13 == '13$' or number14 == '14$' or number15 == '15$' or number16 == '16$' or number17 == '17$' or number18 == '18$' or number19 == '19$' or number20 == '20$':
+             self.lst_window2.insert(END, self.price_entry.get())
+             self.price_entry.delete(0, END)
+
+        else:
+
+            showerror('Azpetrol', 'Если вы ввели цену больше 20 то цена не внесётся максимальная цена у бензина 20$')
 
     def add_user(self):
         self.lst_window3.insert(END, self.user_entry.get())
@@ -594,6 +630,10 @@ class Admin_Menu(Frame):
         else:
             showerror('Azpetrol', 'В это поле можно вводить только числа. Если вы ввели число больше 6 то цена не добавится')
 
+    def add_password_user(self):
+        self.lst_password_user.insert(END, self.password_user_ent.get())
+        self.password_user_ent.delete(0, END)
+
     def add_elements_menu(self):
         self.select = list(self.lst_window1.curselection())
         for i in self.select:
@@ -603,6 +643,16 @@ class Admin_Menu(Frame):
         self.select = list(self.lst_window2.curselection())
         for i in self.select:
             self.lst_menu.insert(END, self.lst_window2.get(i))
+
+    def add_it_menu(self):
+        self.select = list(self.lst_window4.curselection())
+        for i in self.select:
+            self.lst_menu.insert(END, self.lst_window4.get(i))
+
+    def add_it_price_menu(self):
+        self.select = list(self.lst_window5.curselection())
+        for i in self.select:
+            self.lst_menu.insert(END, self.lst_window5.get(i))
 
     def del_list1(self):
         self.select = list(self.lst_window1.curselection())
@@ -657,7 +707,7 @@ class Admin_Menu(Frame):
         self.file.writelines('\n'.join(self.lst_window2.get(0, END)))
         self.file.close()
 
-        self.file = open('users_information.txt', 'w')
+        self.file = open('user_information.txt', 'w')
         self.file.writelines('\n'.join(self.lst_window3.get(0, END)))
         self.file.close()
 
@@ -668,12 +718,20 @@ class Admin_Menu(Frame):
         self.file = open('price_it_information.txt', 'w')
         self.file.writelines('\n'.join(self.lst_window5.get(0, END)))
         self.file.close()
+
+        self.file = open('user_now_password.txt', 'w')
+        self.file.writelines('\n'.join(self.lst_password_user.get(0, END)))
+        self.file.close()
         showinfo('Azpetrol', 'Данные успешно сохранились в ваши файлы')
 
+
+    def save_menu(self):
+        self.file = open('menu_information.txt', 'w')
+        self.file.writelines('\n'.join(self.lst_menu.get(0, END)))
+        self.file.close()
         print('\nСозданное меню')
         self.my_menu = (f'\nВ меню добавлен - {self.lst_window1.get(0)}'
               f'\nВ меню добавлен - {self.lst_window2.get(0)}'
-              f'\nВ меню добавлен - {self.lst_window3.get(0)}'
               f'\nВ меню добавлен - {self.lst_window4.get(0)}'
               f'\nВ меню добавлен - {self.lst_window5.get(0)}')
         print(self.my_menu)

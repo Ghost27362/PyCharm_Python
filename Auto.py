@@ -153,7 +153,84 @@ class Sign_Menu(Frame):
     def return_window(self):
         self.master3.destroy()
         self.new_log = Toplevel()
-        self.log = LoginWindow(self.new_log)
+        self.log = LoginWindowSelect(self.new_log)
+
+class LoginWindowSelect(Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.master7 = master
+        self.master7.title('Вход')
+        self.master7.geometry('400x230+550+250')
+        self.master7.resizable(width=False, height=False)
+        self.master7['bg'] = 'black'
+        self.widgets1()
+
+    def widgets1(self):
+        self.var = IntVar()
+
+        main_label = Label(self.master7, text='Вход', font='Arial 15 bold', bg='black', fg='white')
+        main_label.pack()
+        username_label = Label(self.master7, text='Имя пользователя', font='Arial 11 bold', bg='black', fg='white',
+                               padx=10, pady=8)
+        username_label.pack()
+
+        self.username_entry = Entry(self.master7, bg='black', fg='Lime', font='Arial 12')
+        self.username_entry.pack()
+
+        password_label = Label(self.master7, text='Пароль', font='Arial 11 bold', bg='black', fg='white', padx=10,
+                               pady=8)
+        password_label.pack()
+
+        self.password_entry = Entry(self.master7, bg='black', show='*', fg='Lime', font='Arial 12')
+        self.password_entry.pack()
+
+        self.send_btn = Button(self.master7, text='Войти', command=self.login1)
+        self.send_btn.pack(padx=10, pady=8)
+
+        self.show_btn = Button(self.master7, text='показывать', command=self.show_password1)
+        self.show_btn.place(relx=0.78, rely=0.55)
+
+        self.send_btn = Button(self.master7, text='Зарегистрироваться', command=self.sign1)
+        self.send_btn.pack(padx=10, pady=8)
+
+    def login1(self):
+        text = self.username_entry.get()
+        result1 = 'Имя пользователя: ' + text
+        self.username_entry['text'] = result1
+        print(result1)
+
+        text = self.password_entry.get()
+        result2 = 'Пароль: ' + text
+        self.password_entry['text'] = result2
+        print(result2)
+
+        self.file = open('login_information.txt', 'w')
+        self.file.writelines(self.username_entry.get())
+        self.file.close()
+
+        self.file = open('password_information.txt', 'w')
+        self.file.writelines(self.password_entry.get())
+        self.file.close()
+
+        log = self.username_entry.get()
+        psw = self.password_entry.get()
+        showinfo('Azpetrol', 'Вход успешно выполнен!  Чтобы продолжить нажмите ОК')
+        self.master7.withdraw()
+        self.new_window = Toplevel(self.master7)
+        self.menu_window = Input_Selection(self.new_window)
+
+
+    def sign1(self):
+            cno = self.send_btn
+            self.master7.withdraw()
+            self.my_window3 = Toplevel(self.master7)
+            self.sign_menu = Sign_Menu(self.my_window3)
+
+    def show_password1(self):
+            if self.password_entry['show'] == '*':
+                self.password_entry['show'] = ''
+            else:
+                self.password_entry['show'] = '*'
 
 
 class Input_Selection(Frame):
@@ -192,7 +269,7 @@ class Input_Selection(Frame):
     def return_window_log(self):
         self.master2.destroy()
         self.new_Login = Toplevel()
-        self.login = LoginWindow(self.new_Login)
+        self.login = LoginWindowSelect(self.new_Login)
 
     def go_menu(self):
         self.master2.withdraw()
